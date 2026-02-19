@@ -1,0 +1,55 @@
+[
+  {
+    "fileName": "main-overview.mdc",
+    "description": "Complete system overview covering web, mobile, and API architecture",
+    "sourceFilesToRead": [
+      "apps/api/src/schema.graphql",
+      "apps/api/src/resolvers/",
+      "apps/web/src/app/layout.tsx",
+      "apps/mobile/app/(tabs)/",
+      "packages/shared/src/"
+    ]
+  },
+  {
+    "fileName": "data-models.mdc",
+    "description": "Database schema, GraphQL types, and shared type definitions",
+    "sourceFilesToRead": [
+      "apps/api/prisma/schema.prisma",
+      "apps/api/src/schema.graphql",
+      "packages/shared/src/types/index.ts",
+      "packages/shared/src/schemas/index.ts"
+    ]
+  },
+  {
+    "fileName": "auth-flow.mdc",
+    "description": "Authentication implementation and security patterns",
+    "sourceFilesToRead": [
+      "apps/web/src/app/api/auth/[...nextauth]/route.ts",
+      "apps/web/src/lib/auth.ts",
+      "apps/api/src/resolvers/auth.ts",
+      "apps/web/src/components/providers/session-provider.tsx"
+    ]
+  },
+  {
+    "fileName": "business-logic.mdc",
+    "description": "Core business logic for listings, transactions, and AI features",
+    "sourceFilesToRead": [
+      "apps/api/src/resolvers/listing.ts",
+      "apps/api/src/resolvers/transaction.ts",
+      "apps/api/src/resolvers/bid.ts",
+      "apps/api/src/services/ai/",
+      "apps/api/src/resolvers/create-listing.ts"
+    ]
+  },
+  {
+    "fileName": "frontend-architecture.mdc",
+    "description": "Web and mobile client architecture patterns",
+    "sourceFilesToRead": [
+      "apps/web/src/components/layout/app-shell.tsx",
+      "apps/web/src/app/listings/",
+      "apps/mobile/app/(tabs)/",
+      "packages/ui/src/",
+      "packages/api-client/src/index.ts"
+    ]
+  }
+]

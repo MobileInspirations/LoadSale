@@ -1,0 +1,109 @@
+scalar DateTime
+scalar Decimal
+
+type Query {
+  health: String!
+  me: User
+  listing(id: ID!): Listing
+  listings(limit: Int, offset: Int, category: String, saleType: String): [Listing!]!
+  myTransactions: [Transaction!]!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String
+  role: String!
+  verificationLevel: String!
+  avatar: String
+  rating: Float
+  createdAt: DateTime!
+}
+
+type Listing {
+  id: ID!
+  sellerId: ID!
+  seller: User!
+  title: String!
+  description: String!
+  category: String!
+  subcategory: String
+  conditionGrade: String!
+  saleType: String!
+  price: Decimal!
+  reservePrice: Decimal
+  qualityScore: Float
+  status: String!
+  visibilityStart: DateTime
+  auctionEndTime: DateTime
+  partOutEnabled: Boolean!
+  createdAt: DateTime!
+  photos: [ListingPhoto!]!
+}
+
+type ListingPhoto {
+  id: ID!
+  url: String!
+  position: Int!
+  isHero: Boolean!
+}
+
+input CreateListingInput {
+  title: String!
+  description: String!
+  category: String!
+  subcategory: String
+  conditionGrade: String!
+  saleType: String!
+  price: Float!
+  reservePrice: Float
+  partOutEnabled: Boolean
+  photoUrls: [String!]!
+}
+
+type Transaction {
+  id: ID!
+  listingId: ID!
+  buyerId: ID!
+  sellerId: ID!
+  amount: Decimal!
+  platformFee: Decimal!
+  status: String!
+  createdAt: DateTime!
+}
+
+type Mutation {
+  register(email: String!, password: String!, name: String!, role: String): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+  createListing(input: CreateListingInput!): Listing!
+  createCheckout(listingId: ID!): CheckoutPayload!
+  generateListingDescription(category: String!, conditionGrade: String!, manifestSummary: String): GenerateDescriptionPayload!
+  placeBid(listingId: ID!, amount: Float!, maxBid: Float): Bid!
+}
+
+type Bid {
+  id: ID!
+  amount: Decimal!
+  createdAt: DateTime!
+}
+
+type GenerateDescriptionPayload {
+  title: String!
+  description: String!
+}
+
+type CheckoutPayload {
+  clientSecret: String!
+  transactionId: ID!
+}
+
+type AuthPayload {
+  token: String!
+  refreshToken: String!
+  user: User!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
